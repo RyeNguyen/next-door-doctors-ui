@@ -10,7 +10,7 @@ import IconGoogle from '../../assets/icons/icon-google.svg';
 import IconFacebook from '../../assets/icons/icon-facebook.svg';
 import IconProfile from '../../assets/icons/icon-profile.svg';
 import IconLock from '../../assets/icons/icon-lock.svg';
-import BgVid from '../../assets/videos/bg-video-3.mp4';
+import BgVid from '../../assets/videos/bg-video-3.webm';
 
 class Login extends Component {
     constructor(props) {
