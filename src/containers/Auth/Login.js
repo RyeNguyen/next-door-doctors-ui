@@ -16,6 +16,27 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.btnLogin = React.createRef();
+        this.state = {
+            username: '',
+            password: ''
+        }
+    }
+
+    handleOnChangeUsername = event => {
+        this.setState({
+            username: event.target.value
+        })
+    }
+
+    handleOnChangePassword = event => {
+        this.setState({
+            password: event.target.value
+        })
+    }
+
+    handleLogin = event => {
+        event.preventDefault();
+        console.log(this.state.username)
     }
 
     render() {
@@ -26,13 +47,18 @@ class Login extends Component {
                 </video>
                 <div className='auth__border'>
                     <div className='auth__container'>
-                        <div className='auth__content'>
+                        <form className='auth__content'>
                             <img src={IconTrust} alt="auth-icon" className='auth__content-icon'/>
                             <h2 className='auth__content-header'>Chào mừng trở lại</h2>
                             <div className="auth__content-field">
                                 <label className='auth__content-field-name'>Tên đăng nhập<span className='auth__content-required'>*</span></label>
                                 <div className='auth__content-field-wrapper'>
-                                    <input className='auth__content-field-input' type="text"/>
+                                    <input
+                                        value={this.state.username}
+                                        className='auth__content-field-input'
+                                        type="text"
+                                        onChange={event => this.handleOnChangeUsername(event)}
+                                    />
                                     <img src={IconProfile} alt="icon-profile" className='auth__content-field-icon'/>
                                 </div>
                             </div>
@@ -40,7 +66,12 @@ class Login extends Component {
                             <div className="auth__content-field">
                                 <label className='auth__content-field-name'>Mật khẩu<span className='auth__content-required'>*</span></label>
                                 <div className='auth__content-field-wrapper'>
-                                    <input className='auth__content-field-input' type="password"/>
+                                    <input
+                                        value={this.state.password}
+                                        className='auth__content-field-input'
+                                        type="password"
+                                        onChange={event => this.handleOnChangePassword(event)}
+                                    />
                                     <img src={IconLock} alt="icon-lock" className='auth__content-field-icon'/>
                                 </div>
                                 <a href="#" className='auth__content-forgot'>Quên mật khẩu?</a>
@@ -48,7 +79,7 @@ class Login extends Component {
 
                             <div className='container__center'>
                                 <div className='btn__border'>
-                                    <button className='btn'>Đăng nhập</button>
+                                    <button className='btn' onClick={event => this.handleLogin(event)}>Đăng nhập</button>
                                 </div>
                             </div>
 
@@ -73,7 +104,7 @@ class Login extends Component {
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
