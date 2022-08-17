@@ -6,9 +6,30 @@
     background-repeat: no-repeat;
     background-size: cover;
     font-family: $fontmain;
-    font-size: $base-size - 2px;
+    font-size: $base-size;
+    color: $color-primary;
     height: 100vh;
     overflow: hidden;
+}
+
+h1, h2 {
+  font-family: $font-secondary;
+  font-weight: 600;
+  color: $color-primary;
+}
+
+h1 {
+  font-size: 55px;
+}
+
+h2 {
+  font-size: 40px;
+  letter-spacing: 1px;
+  line-height: $lh;
+}
+
+p {
+  margin: 0;
 }
 
 .btn {

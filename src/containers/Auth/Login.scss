@@ -1,0 +1,155 @@
+@import "../../styles/common.scss";
+
+.auth {
+  &__background {
+    width: 100%;
+    height: 100vh;
+    background: url('../../assets/images/auth-bg.png') no-repeat center center, linear-gradient(103.65deg, $color-primary 15.18%, #0A1B50 48.14%, #1E3784 80.43%, $color-secondary 99.53%);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-video {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  &__border {
+    background: linear-gradient(140deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 34%, rgba(101,126,212,1) 65%, rgba(101,126,212,1) 100%);
+    padding: 1px;
+    border-radius: 24px;
+  }
+
+  &__container {
+    width: 832px;
+    height: auto;
+    background: linear-gradient(107.37deg, rgba(185, 251, 255, 0.4) 3.3%, #D1C9F1 74.31%);
+    background-blend-mode: overlay, normal;
+    box-shadow: 0 1px 24px -8px rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(30px);
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 96px 40px;
+  }
+
+  &__content {
+    width: 100%;
+
+    &-icon {
+      display: block;
+      margin: 0 auto;
+    }
+
+    &-header {
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    &-field {
+      margin-bottom: 40px;
+
+      &-name {
+        display: block;
+        margin-bottom: 16px;
+      }
+
+      &-wrapper {
+        position: relative;
+      }
+
+      &-input {
+        width: 100%;
+        outline: none;
+        border: 2px solid $color-primary;
+        border-radius: 32px;
+        padding: 16px 24px 16px 64px;
+        font-family: $fontmain;
+        font-size: $base-size;
+        color: $color-primary;
+      }
+
+      &-icon {
+        position: absolute;
+        top: 16px;
+        left: 24px;
+      }
+    }
+
+    &-required {
+      color: #F5303C;
+      margin-left: 8px;
+    }
+
+    &-forgot {
+      display: inline-block;
+      margin-top: 16px;
+      color: $color-primary;
+    }
+  }
+
+  &__separator {
+    margin-top: 48px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    &-line {
+      background-color: $color-secondary;
+      height: 2px;
+      width: 35%;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+}
+
+.btn {
+  width: auto;
+  height: auto;
+  min-width: 167px;
+  font-weight: normal;
+  color: $color-primary;
+  padding: 22px 50px;
+  background: linear-gradient(94.93deg, rgba(125, 225, 219, 0.17) 10.16%, rgba(128, 102, 201, 0.13) 90.68%);
+  box-shadow: 0 10px 24px -4px rgba(101, 126, 212, 0.5);
+  backdrop-filter: blur(50px);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__border {
+    width: auto;
+    height: auto;
+    display: inline-block;
+    background: linear-gradient(170deg, rgba(187,239,242,1) 0%, rgba(208,175,242,1) 100%);
+    border-radius: 24px;
+    padding: 1px;
+  }
+
+  &.secondary {
+    padding: 12px 32px;
+    gap: 8px;
+  }
+}
+
+.container__center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
