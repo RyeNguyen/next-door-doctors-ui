@@ -76,10 +76,36 @@
         color: $color-primary;
       }
 
+      &-icons {
+        width: auto;
+        height: auto;
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
       &-icon {
         position: absolute;
-        top: 16px;
-        left: 24px;
+
+        &.prefix {
+          top: 16px;
+          left: 24px;
+        }
+
+        &.postfix {
+          width: 36px;
+          height: 36px;
+          position: relative;
+          background: linear-gradient(107.37deg, rgba(185, 251, 255, 0.4) 3.3%, #D1C9F1 74.31%);
+          background-blend-mode: overlay, normal;
+          box-shadow: 0 1px 24px -8px rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(50px);
+          border-radius: 24px;
+          cursor: pointer;
+        }
       }
     }
 
@@ -148,7 +174,7 @@
   }
 }
 
-.container__center {
+.container--center {
   display: flex;
   align-items: center;
   justify-content: center;
