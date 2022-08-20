@@ -2,17 +2,20 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {push} from "connected-react-router";
 import * as actions from "../../store/actions";
+import {handleLoginApi} from "../../services/userService";
 import './Login.scss';
 
 import IconTrust from '../../assets/icons/icon-trust.svg';
 import IconGoogle from '../../assets/icons/icon-google.svg';
-import IconFacebook from '../../assets/icons/icon-facebook.svg';
 import IconProfile from '../../assets/icons/icon-profile.svg';
+import IconFacebook from '../../assets/icons/icon-facebook.svg';
 import IconLock from '../../assets/icons/icon-lock.svg';
 import IconClose from '../../assets/icons/icon-close.svg';
 import IconVisible from '../../assets/icons/icon-visible.svg';
 import IconInvisible from '../../assets/icons/icon-invisible.svg';
 import BgVid from '../../assets/videos/bg-video-3.webm';
+import Button from "../../components/Button/Button";
+import {userLoginSuccess} from "../../store/actions";
 
 class Login extends Component {
     constructor(props) {
@@ -21,7 +24,8 @@ class Login extends Component {
         this.state = {
             username: '',
             password: '',
-            passwordVisible: false
+            passwordVisible: false,
+            errMessage: ''
         }
     }
 
@@ -55,9 +59,31 @@ class Login extends Component {
         })
     }
 
-    handleLogin = event => {
-        event.preventDefault();
-        console.log(this.state.username)
+    handleLogin = async () => {
+        this.setState({
+            errMessage: ''
+        });
+
+        try {
+            const data = await handleLoginApi(this.state.username, this.state.password);
+            if (data && data.errCode !== 0) {
+                this.setState({
+                    errMessage: data.message
+                })
+            }
+            if (data && data.errCode === 0) {
+                this.props.userLoginSuccess(data.user);
+                console.log('Login succeed!!');
+            }
+        } catch (error) {
+            if (error.response) {
+                if (error.response.data) {
+                    this.setState({
+                        errMessage: error.response.data.message
+                    })
+                }
+            }
+        }
     }
 
     render() {
@@ -85,10 +111,13 @@ class Login extends Component {
                                          className='auth__content-field-icon prefix'/>
                                     <div className='auth__content-field-icons'>
                                         {!this.state.username ||
-                                        <div className='container--center auth__content-field-icon postfix'
-                                             onClick={() => this.handleClearText('username')}>
-                                            <img src={IconClose} alt="icon-profile"/>
-                                        </div>}
+                                        <div className='auth__content-field-icon-wrapper'>
+                                            <div className='container--center auth__content-field-icon postfix'
+                                                 onClick={() => this.handleClearText('username')}>
+                                                <img src={IconClose} alt="icon-profile"/>
+                                            </div>
+                                        </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -105,27 +134,32 @@ class Login extends Component {
                                     />
                                     <img src={IconLock} alt="icon-lock" className='auth__content-field-icon prefix'/>
                                     <div className='auth__content-field-icons'>
-                                        <div className='container--center auth__content-field-icon postfix'
-                                             onClick={() => this.handlePasswordVisible(!this.state.passwordVisible)}>
-                                            <img src={this.state.passwordVisible ? IconVisible : IconInvisible}
-                                                 alt="icon-eye"/>
+                                        <div className='auth__content-field-icon-wrapper'>
+                                            <div className='container--center auth__content-field-icon postfix'
+                                                 onClick={() => this.handlePasswordVisible(!this.state.passwordVisible)}>
+                                                <img src={this.state.passwordVisible ? IconVisible : IconInvisible}
+                                                     alt="icon-eye"/>
+                                            </div>
                                         </div>
 
                                         {!this.state.password ||
-                                        <div className='container--center auth__content-field-icon postfix'
-                                             onClick={() => this.handleClearText('password')}>
-                                            <img src={IconClose} alt="icon-profile"/>
-                                        </div>}
+                                        <div className='auth__content-field-icon-wrapper'>
+                                            <div className='container--center auth__content-field-icon postfix'
+                                                 onClick={() => this.handleClearText('password')}>
+                                                <img src={IconClose} alt="icon-profile"/>
+                                            </div>
+                                        </div>
+                                        }
                                     </div>
+                                </div>
+                                <div style={{color: 'red'}}>
+                                    {this.state.errMessage}
                                 </div>
                                 <a href="#" className='auth__content-forgot'>Quên mật khẩu?</a>
                             </div>
 
                             <div className='container--center'>
-                                <div className='btn__border'>
-                                    <button className='btn' onClick={event => this.handleLogin(event)}>Đăng nhập
-                                    </button>
-                                </div>
+                                <Button text='Đăng nhập' toDo={this.handleLogin}/>
                             </div>
 
                             <div className='auth__separator'>
@@ -135,19 +169,8 @@ class Login extends Component {
                             </div>
 
                             <div className='auth__footer'>
-                                <div className='btn__border'>
-                                    <button className='btn secondary'>
-                                        Google
-                                        <img src={IconGoogle} alt="icon-google"/>
-                                    </button>
-                                </div>
-
-                                <div className='btn__border'>
-                                    <button className='btn secondary'>
-                                        Facebook
-                                        <img src={IconFacebook} alt="icon-facebook"/>
-                                    </button>
-                                </div>
+                                <Button text='Google' icon={IconGoogle} isSmaller/>
+                                <Button text='Facebook' icon={IconFacebook} isSmaller/>
                             </div>
                         </form>
                     </div>
@@ -166,8 +189,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
-        adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
-        adminLoginFail: () => dispatch(actions.adminLoginFail()),
+        //userLoginFail: () => dispatch(actions.adminLoginFail()),
+        userLoginSuccess: userInfo => dispatch(actions.userLoginSuccess(userInfo)),
     };
 };
 

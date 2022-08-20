@@ -1,0 +1,82 @@
+@import '../../styles/common';
+
+.btn {
+  width: auto;
+  height: auto;
+  min-width: 167px;
+  font-weight: normal;
+  color: $color-primary;
+  padding: 22px 50px;
+  background: linear-gradient(94.93deg, rgba(125, 225, 219, 0.17) 10.16%, rgba(128, 102, 201, 0.13) 90.68%);
+  box-shadow: 0 10px 24px -4px rgba(101, 126, 212, 0.5);
+  backdrop-filter: blur(50px);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0.15), transparent);
+    transform: skew(45deg) translateX(0);
+    transition: all 0.5s ease-in-out;
+  }
+
+  &:hover {
+    &::before {
+      transform: skew(45deg) translateX(200%);
+    }
+  }
+
+  &__border {
+    width: auto;
+    height: auto;
+    position: relative;
+    display: inline-block;
+    background: linear-gradient(170deg, rgba(187,239,242,1) 0%, rgba(208,175,242,1) 100%);
+    border-radius: 24px;
+    padding: 1px;
+
+    &::after {
+      width: 20%;
+      height: 10%;
+      content: '';
+      position: absolute;
+      z-index: 0;
+      background-color: $color-secondary;
+      bottom: 1px;
+      left: 50%;
+      transform: translate(-50%);
+      transition: all 0.5s ease-in-out;
+      border-radius: 32px;
+    }
+
+    &:hover {
+      &::after {
+        width: 80%;
+        height: 60%;
+      }
+    }
+  }
+
+  &--smaller {
+    padding: 12px 32px;
+  }
+
+  img {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+  }
+}

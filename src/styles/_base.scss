@@ -2,7 +2,7 @@
  * General styles
  */
  body, html {
-    background-image: "#fff";
+    background-color: #FFF;
     background-repeat: no-repeat;
     background-size: cover;
     font-family: $fontmain;
@@ -36,9 +36,6 @@ p {
     padding: 0;
     border: none;
     cursor: pointer;
-    font-weight: 700;
-    height: 30px;
-    line-height: 30px;
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
