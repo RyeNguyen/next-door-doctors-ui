@@ -10,12 +10,9 @@ import IconGoogle from '../../assets/icons/icon-google.svg';
 import IconProfile from '../../assets/icons/icon-profile.svg';
 import IconFacebook from '../../assets/icons/icon-facebook.svg';
 import IconLock from '../../assets/icons/icon-lock.svg';
-import IconClose from '../../assets/icons/icon-close.svg';
-import IconVisible from '../../assets/icons/icon-visible.svg';
-import IconInvisible from '../../assets/icons/icon-invisible.svg';
 import BgVid from '../../assets/videos/bg-video-3.webm';
 import Button from "../../components/Button/Button";
-import {userLoginSuccess} from "../../store/actions";
+import InputField from "../../components/InputField/InputField";
 
 class Login extends Component {
     constructor(props) {
@@ -29,28 +26,12 @@ class Login extends Component {
         }
     }
 
-    handleOnChangeUsername = event => {
-        this.setState({
-            username: event.target.value
-        })
-    }
-
-    handleOnChangePassword = event => {
-        this.setState({
-            password: event.target.value
-        })
+    handleChangeInput = (fieldText, event) => {
+        this.setState({[fieldText]: event.target.value});
     }
 
     handleClearText = fieldText => {
-        if (fieldText === 'username') {
-            this.setState({
-                username: ''
-            })
-        } else {
-            this.setState({
-                password: ''
-            })
-        }
+        this.setState({[fieldText]: ''});
     }
 
     handlePasswordVisible = visible => {
@@ -97,69 +78,34 @@ class Login extends Component {
                         <form className='auth__content'>
                             <img src={IconTrust} alt="auth-icon" className='auth__content-icon'/>
                             <h2 className='auth__content-header'>Chào mừng trở lại</h2>
-                            <div className="auth__content-field">
-                                <label className='auth__content-field-name'>Tên đăng nhập<span
-                                    className='auth__content-required'>*</span></label>
-                                <div className='auth__content-field-wrapper'>
-                                    <input
-                                        value={this.state.username}
-                                        className='auth__content-field-input'
-                                        type="text"
-                                        onChange={event => this.handleOnChangeUsername(event)}
-                                    />
-                                    <img src={IconProfile} alt="icon-profile"
-                                         className='auth__content-field-icon prefix'/>
-                                    <div className='auth__content-field-icons'>
-                                        {!this.state.username ||
-                                        <div className='auth__content-field-icon-wrapper'>
-                                            <div className='container--center auth__content-field-icon postfix'
-                                                 onClick={() => this.handleClearText('username')}>
-                                                <img src={IconClose} alt="icon-profile"/>
-                                            </div>
-                                        </div>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
+                            <div className='auth__content-inputs'>
+                                <InputField
+                                    fieldName='username'
+                                    labelName='Tên đăng nhập'
+                                    isRequired
+                                    inputValue={this.state.username}
+                                    inputType='text'
+                                    handleChange={this.handleChangeInput}
+                                    handleClick={this.handleClearText}
+                                    preIcon={IconProfile}
+                                />
 
-                            <div className="auth__content-field">
-                                <label className='auth__content-field-name'>Mật khẩu<span
-                                    className='auth__content-required'>*</span></label>
-                                <div className='auth__content-field-wrapper'>
-                                    <input
-                                        value={this.state.password}
-                                        className='auth__content-field-input'
-                                        type={this.state.passwordVisible ? 'text' : 'password'}
-                                        onChange={event => this.handleOnChangePassword(event)}
-                                    />
-                                    <img src={IconLock} alt="icon-lock" className='auth__content-field-icon prefix'/>
-                                    <div className='auth__content-field-icons'>
-                                        <div className='auth__content-field-icon-wrapper'>
-                                            <div className='container--center auth__content-field-icon postfix'
-                                                 onClick={() => this.handlePasswordVisible(!this.state.passwordVisible)}>
-                                                <img src={this.state.passwordVisible ? IconVisible : IconInvisible}
-                                                     alt="icon-eye"/>
-                                            </div>
-                                        </div>
-
-                                        {!this.state.password ||
-                                        <div className='auth__content-field-icon-wrapper'>
-                                            <div className='container--center auth__content-field-icon postfix'
-                                                 onClick={() => this.handleClearText('password')}>
-                                                <img src={IconClose} alt="icon-profile"/>
-                                            </div>
-                                        </div>
-                                        }
-                                    </div>
-                                </div>
-                                <div style={{color: 'red'}}>
-                                    {this.state.errMessage}
-                                </div>
-                                <a href="#" className='auth__content-forgot'>Quên mật khẩu?</a>
+                                <InputField
+                                    fieldName='password'
+                                    labelName='Mật khẩu'
+                                    isRequired
+                                    inputValue={this.state.password}
+                                    inputType='text'
+                                    handleChange={this.handleChangeInput}
+                                    handleClick={this.handleClearText}
+                                    preIcon={IconLock}
+                                    errMessage={this.state.errMessage}
+                                    hasForgot
+                                />
                             </div>
 
                             <div className='container--center'>
-                                <Button text='Đăng nhập' toDo={this.handleLogin}/>
+                                <Button text='Đăng nhập' toDo={this.handleLogin} isLarger/>
                             </div>
 
                             <div className='auth__separator'>
@@ -169,8 +115,8 @@ class Login extends Component {
                             </div>
 
                             <div className='auth__footer'>
-                                <Button text='Google' icon={IconGoogle} isSmaller/>
-                                <Button text='Facebook' icon={IconFacebook} isSmaller/>
+                                <Button text='Google' icon={IconGoogle}/>
+                                <Button text='Facebook' icon={IconFacebook}/>
                             </div>
                         </form>
                     </div>

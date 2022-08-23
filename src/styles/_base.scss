@@ -8,8 +8,6 @@
     font-family: $fontmain;
     font-size: $base-size;
     color: $color-primary;
-    height: 100vh;
-    overflow: hidden;
 }
 
 h1, h2 {
@@ -30,6 +28,10 @@ h2 {
 
 p {
   margin: 0;
+}
+
+iframe {
+  display: none !important;
 }
 
 .btn {
