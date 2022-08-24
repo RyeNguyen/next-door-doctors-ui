@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getUsers} from "../../services/userService";
+import {getUsers, addNewUserService} from "../../services/userService";
 
 import './UserManage.scss';
 
@@ -17,6 +17,10 @@ class UserManage extends Component {
     }
 
     async componentDidMount() {
+        await this.getAllUsers();
+    }
+
+    getAllUsers = async () => {
         const response = await getUsers();
         if (response && response.errCode === 0) {
             this.setState({
@@ -25,7 +29,7 @@ class UserManage extends Component {
         }
     }
 
-    handleAddNewUser = () => {
+    handleOpenModal = () => {
         this.setState({
             isModalOpened: true
         })
@@ -37,12 +41,28 @@ class UserManage extends Component {
         })
     }
 
+    addNewUser = async data => {
+        try {
+            const response = await addNewUserService(data);
+            if (response && response.errCode !== 0) {
+                alert(response.message);
+            } else {
+                await this.getAllUsers();
+                this.setState({
+                    isModalOpened: false
+                })
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     render() {
         return (
             <div className='user-container'>
                 <div className="title text-center">Manage users</div>
                 <div className="mx-1">
-                    <Button text='Add new users' toDo={this.handleAddNewUser}/>
+                    <Button text='Add new users' toDo={this.handleOpenModal}/>
                 </div>
                 <div className="users-table mt-4 mx-3">
                     <table id="customers">
@@ -75,6 +95,7 @@ class UserManage extends Component {
                 <ModalUser
                     isOpen={this.state.isModalOpened}
                     toggle={this.toggleUserModal}
+                    addNewUser={this.addNewUser}
                 />
             </div>
         );

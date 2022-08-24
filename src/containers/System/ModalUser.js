@@ -32,12 +32,41 @@ class ModalUser extends Component {
     componentDidMount() {
     }
 
+    /**
+     * Handle changing of input fields
+     * Author: NQMinh (23/08/2022)
+     */
     handleChangeInput = (fieldText, event) => {
         this.setState({[fieldText]: event.target.value});
     }
 
+    /**
+     * Clear value of input fields
+     * @param {string} fieldText 
+     * Author: NQMinh (23/08/2022)
+     */
     handleClearText = fieldText => {
         this.setState({[fieldText]: ''});
+    }
+
+    validateInput = () => {
+        let isValid = true;
+        const arrInput = Object.keys(this.state);
+        for (let item of arrInput) {
+            if (!this.state[item]) {
+                isValid = false;
+                alert('Missing required parameter: ' + item);
+                break;
+            }
+        }
+        return isValid;
+    }
+
+    handleAddNewUser = () => {
+        const isValid = this.validateInput();
+        if (isValid) {
+            this.props.addNewUser(this.state);
+        }
     }
 
     render() {
@@ -135,7 +164,7 @@ class ModalUser extends Component {
                 </ModalBody>
                 <ModalFooter>
                     <div className="modal__buttons">
-                        <Button toDo={this.props.toggle} isLarger text='Add user' icon={IconAdd}/>
+                        <Button toDo={this.handleAddNewUser} isLarger text='Add user' icon={IconAdd}/>
                         <Button toDo={this.props.toggle} isLarger text='Cancel' icon={IconCancel}/>
                     </div>
                 </ModalFooter>
