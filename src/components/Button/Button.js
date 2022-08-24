@@ -2,12 +2,13 @@ import React from 'react';
 
 import './Button.scss';
 
-const Button = (props) => {
-    const {icon, text, isLarger, toDo} = props;
+const 
+Button = (props) => {
+    const {icon, text, isLarger, toDo, parentValue} = props;
 
     const handleToDo = event => {
         event.preventDefault();
-        toDo();
+        toDo(parentValue);
     }
 
     return (
