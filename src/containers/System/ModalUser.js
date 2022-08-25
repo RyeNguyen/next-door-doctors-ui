@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import {emitter} from "../../utils/emitter";
 
 import IconClose from "../../assets/icons/icon-close--larger.svg";
 import IconAdd from "../../assets/icons/icon-add-user.svg";
@@ -26,9 +27,25 @@ class ModalUser extends Component {
       lastName: "",
       address: "",
     };
+    this.listenToEmitter();
   }
 
   componentDidMount() {}
+
+  listenToEmitter = () => {
+    emitter.on('EVENT_CLEAR_MODAL_DATA', () => {
+      //reset state
+      this.setState({
+        email: "",
+        password: "",
+        username: "",
+        phoneNumber: "",
+        firstName: "",
+        lastName: "",
+        address: "",
+      })
+    })
+  }
 
   /**
    * Handle changing of input fields

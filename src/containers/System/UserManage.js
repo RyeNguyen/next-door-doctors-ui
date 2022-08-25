@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getUsers, addNewUserService, deleteUserService, editUserDataService } from "../../services/userService";
 import { Table } from "reactstrap";
+import {emitter} from "../../utils/emitter";
 
 import "./UserManage.scss";
 import IconAdd from '../../assets/icons/icon-add-user.svg';
@@ -55,6 +56,7 @@ class UserManage extends Component {
         this.setState({
           isModalOpened: false,
         });
+        emitter.emit('EVENT_CLEAR_MODAL_DATA');
       }
     } catch (error) {
       console.log(error);
