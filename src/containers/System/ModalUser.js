@@ -21,7 +21,6 @@ class ModalUser extends Component {
     this.state = {
       email: "",
       password: "",
-      username: "",
       phoneNumber: "",
       firstName: "",
       lastName: "",
@@ -32,13 +31,23 @@ class ModalUser extends Component {
 
   componentDidMount() {}
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.userData !== prevProps.userData) {
+      if (this.props.modalRole === 'EDIT') {
+        const stateArr = Object.keys(this.state);
+        for (let item of stateArr) {
+          this.setState({ [item]: this.props.userData[item] });
+        }
+      }
+    }
+  }
+
   listenToEmitter = () => {
     emitter.on('EVENT_CLEAR_MODAL_DATA', () => {
       //reset state
       this.setState({
         email: "",
         password: "",
-        username: "",
         phoneNumber: "",
         firstName: "",
         lastName: "",
@@ -114,6 +123,7 @@ class ModalUser extends Component {
                 handleClick={this.handleClearText}
                 inputType="email"
                 inputValue={this.state.email}
+                inputDisabled={this.props.modalRole === 'EDIT'}
               />
             </div>
 
@@ -126,18 +136,7 @@ class ModalUser extends Component {
                 handleClick={this.handleClearText}
                 inputType="text"
                 inputValue={this.state.password}
-              />
-            </div>
-
-            <div className="modal__field">
-              <InputField
-                fieldName="username"
-                labelName="Username"
-                isRequired
-                handleChange={this.handleChangeInput}
-                handleClick={this.handleClearText}
-                inputType="text"
-                inputValue={this.state.username}
+                inputDisabled={this.props.modalRole === 'EDIT'}
               />
             </div>
 
@@ -190,10 +189,10 @@ class ModalUser extends Component {
         <ModalFooter>
           <div className="modal__buttons">
             <Button
-              toDo={this.handleAddNewUser}
+              toDo={this.props.modalRole === 'ADD' ? this.handleAddNewUser : this.handleEditUserData}
               isLarger
-              text='Add user'
-              icon={IconAdd}
+              text={this.props.modalRole === 'ADD' ? 'Add user' : 'Save changes'}
+              icon={this.props.modalRole === 'ADD' ? IconAdd : IconEdit}
             />
             <Button
               toDo={this.props.toggle}

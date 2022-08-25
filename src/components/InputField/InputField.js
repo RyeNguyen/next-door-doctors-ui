@@ -16,7 +16,8 @@ const InputField = ({
                         handleClick,
                         preIcon,
                         errMessage,
-                        hasForgot = false
+                        hasForgot = false,
+                        inputDisabled = false
                     }) => {
     const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -37,6 +38,7 @@ const InputField = ({
                     type={!passwordVisible ? inputType : 'password'}
                     placeholder={inputPlaceholder}
                     onChange={event => handleChange(fieldName, event)}
+                    disabled={inputDisabled}
                 />
                 {
                     preIcon && <img src={preIcon} alt="input-icon" className='input__icon prefix'/>
@@ -53,7 +55,7 @@ const InputField = ({
                         </div>
                     }
 
-                    {!inputValue ||
+                    {inputValue && !inputDisabled &&
                     <div className='input__icon-wrapper'>
                         <div className='container--center input__icon postfix'
                              onClick={() => handleClick(fieldName)}>

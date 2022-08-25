@@ -17,12 +17,20 @@ class UserManage extends Component {
     super(props);
     this.state = {
       arrUsers: [],
-      isModalOpened: false
+      isModalOpened: false,
+      modalRole: 'ADD',
+      userData: {}
     };
   }
 
   async componentDidMount() {
     await this.getAllUsers();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (!this.state.isModalOpened) {
+      emitter.emit('EVENT_CLEAR_MODAL_DATA');
+    }
   }
 
   getAllUsers = async () => {
@@ -34,9 +42,11 @@ class UserManage extends Component {
     }
   };
 
-  handleOpenModal = () => {
+  handleOpenModal = data => {
     this.setState({
-      isModalOpened: true
+      isModalOpened: true,
+      modalRole: data.modalRole,
+      userData: data.userData
     });
   };
 
@@ -78,6 +88,7 @@ class UserManage extends Component {
 
   editUserData = async data => {
     try {
+      data.id = this.state.userData.id;
         const response = await editUserDataService(data);
         if (response && response.errCode !== 0) {
           alert(response.message);
@@ -86,6 +97,7 @@ class UserManage extends Component {
           this.setState({
             isModalOpened: false,
           });
+          emitter.emit('EVENT_CLEAR_MODAL_DATA');
         }
       } catch (error) {
         console.log(error);
@@ -97,7 +109,7 @@ class UserManage extends Component {
       <div className="user-container">
         <div className="title text-center">Manage users</div>
         <div className="manager__add">
-          <Button text="Add new users" icon={IconAdd} toDo={this.handleOpenModal} parentValue='ADD'/>
+          <Button text="Add new users" icon={IconAdd} toDo={this.handleOpenModal} parentValue={{modalRole: 'ADD'}}/>
         </div>
 
         <div className="manager__table-container">
@@ -123,7 +135,7 @@ class UserManage extends Component {
                   <td>{user.phoneNumber}</td>
                   <td>{user.address}</td>
                   <td className='manager__table-buttons'>
-                    <Button icon={IconEdit} toDo={this.handleOpenModal}/>
+                    <Button icon={IconEdit} toDo={this.handleOpenModal} parentValue={{modalRole: 'EDIT', userData: user}}/>
                     <Button icon={IconDelete} toDo={this.deleteUser} parentValue={user.id} />
                   </td>
                 </tr>
@@ -137,6 +149,8 @@ class UserManage extends Component {
           toggle={this.toggleUserModal}
           addNewUser={this.addNewUser}
           editUserData={this.editUserData}
+          userData={this.state.userData}
+          modalRole={this.state.modalRole}
         />
       </div>
     );
