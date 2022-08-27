@@ -71,7 +71,7 @@ class Login extends Component {
         return (
             <div className='auth__background'>
                 <video autoPlay muted loop className='auth__background-video'>
-                    <source src={BgVid} type="video/mp4"/>
+                    <source src={BgVid} type="video/webm"/>
                 </video>
                 <div className='auth__border'>
                     <div className='auth__container'>

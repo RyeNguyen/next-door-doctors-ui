@@ -21,16 +21,17 @@ h1, h2 {
   font-family: $font-secondary;
   font-weight: 600;
   color: $color-primary;
+  line-height: $lh;
 }
 
 h1 {
-  font-size: 5.5rem;
+  font-size: 6rem;
+  letter-spacing: 2px;
 }
 
 h2 {
   font-size: 4rem;
   letter-spacing: 1px;
-  line-height: $lh;
 }
 
 p {
