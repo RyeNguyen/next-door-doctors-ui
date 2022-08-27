@@ -3,14 +3,15 @@
 .btn {
   width: auto;
   height: auto;
-  min-width: 167px;
+  min-width: 16.7rem;
+  font-size: 1.8rem;
   font-weight: normal;
   color: $color-primary;
-  padding: 12px 32px;
+  padding: 1.2rem 3.2rem;
   background: linear-gradient(94.93deg, rgba(125, 225, 219, 0.17) 10.16%, rgba(128, 102, 201, 0.13) 90.68%);
   box-shadow: 0 10px 24px -4px rgba(101, 126, 212, 0.5);
-  backdrop-filter: blur(50px);
-  border-radius: 24px;
+  backdrop-filter: blur(5rem);
+  border-radius: 2.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,7 +44,7 @@
     position: relative;
     display: inline-block;
     background: linear-gradient(170deg, rgba(187,239,242,1) 0%, rgba(208,175,242,1) 100%);
-    border-radius: 24px;
+    border-radius: 2.4rem;
     padding: 1px;
     z-index: 2;
 
@@ -58,8 +59,8 @@
       left: 50%;
       transform: translate(-50%);
       transition: all 0.5s ease-in-out;
-      border-radius: 32px;
-      filter: blur(30px);
+      border-radius: 3.2rem;
+      filter: blur(3rem);
     }
 
     &:hover {
@@ -71,7 +72,7 @@
   }
 
   &--larger {
-    padding: 22px 50px;
+    padding: 2.2rem 5rem;
   }
 
   &--icon {

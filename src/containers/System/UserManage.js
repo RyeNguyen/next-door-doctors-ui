@@ -109,7 +109,7 @@ class UserManage extends Component {
     render() {
         return (
             <div className="user-container">
-                <div className="title text-center">Manage users</div>
+                <h2 className="text-center">Manage users</h2>
                 <div className="manager__add">
                     <Button text="Add new users" icon={IconAdd} toDo={this.handleOpenModal}
                             parentValue={{modalRole: 'ADD'}}/>

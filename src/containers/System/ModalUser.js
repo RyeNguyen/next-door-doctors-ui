@@ -99,18 +99,20 @@ class ModalUser extends Component {
     }
 
     render() {
+        const {isOpen, toggle, modalRole} = this.props;
+
         return (
             <Modal
-                isOpen={this.props.isOpen}
-                toggle={() => this.props.toggle()}
+                isOpen={isOpen}
+                toggle={() => toggle()}
                 centered
             >
                 <ModalHeader
-                    toggle={() => this.props.toggle()}
+                    toggle={() => toggle()}
                     close={this.closeButton}
                 />
                 <ModalBody>
-                    <h2 className="modal__title">Add a new User</h2>
+                    <h2 className="modal__title">{modalRole === 'EDIT' ? `Update user's info` : 'Add a new User'}</h2>
                     <div className="modal__fields">
                         <div className="modal__field">
                             <InputField
@@ -121,12 +123,12 @@ class ModalUser extends Component {
                                 handleClick={this.handleClearText}
                                 inputType="email"
                                 inputValue={this.state.email}
-                                inputDisabled={this.props.modalRole === 'EDIT'}
+                                inputDisabled={modalRole === 'EDIT'}
                             />
                         </div>
 
                         {
-                            this.props.modalRole !== 'EDIT' && <div className="modal__field">
+                            modalRole !== 'EDIT' && <div className="modal__field">
                                 <InputField
                                     fieldName="password"
                                     labelName="Password"
@@ -135,7 +137,7 @@ class ModalUser extends Component {
                                     handleClick={this.handleClearText}
                                     inputType="text"
                                     inputValue={this.state.password}
-                                    inputDisabled={this.props.modalRole === 'EDIT'}
+                                    inputDisabled={modalRole === 'EDIT'}
                                 />
                             </div>
                         }
@@ -189,13 +191,13 @@ class ModalUser extends Component {
                 <ModalFooter>
                     <div className="modal__buttons">
                         <Button
-                            toDo={this.props.modalRole === 'ADD' ? this.handleAddNewUser : this.handleEditUserData}
+                            toDo={modalRole === 'ADD' ? this.handleAddNewUser : this.handleEditUserData}
                             isLarger
-                            text={this.props.modalRole === 'ADD' ? 'Add user' : 'Save changes'}
-                            icon={this.props.modalRole === 'ADD' ? IconAdd : IconEdit}
+                            text={modalRole === 'ADD' ? 'Add user' : 'Save changes'}
+                            icon={modalRole === 'ADD' ? IconAdd : IconEdit}
                         />
                         <Button
-                            toDo={this.props.toggle}
+                            toDo={toggle}
                             isLarger
                             text="Cancel"
                             icon={IconCancel}
