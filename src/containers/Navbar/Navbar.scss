@@ -37,4 +37,94 @@
       backdrop-filter: blur(5rem);
     }
   }
+
+  &__switch {
+    position: relative;
+    width: 9.6rem;
+    height: 3.2rem;
+    overflow: hidden;
+
+    &-knobs,
+    &-layer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+
+    &-knobs {
+      z-index: 2;
+      height: 100%;
+
+      &::before,
+      &::after,
+      span {
+        position: absolute;
+        width: 2.8rem;
+        height: 2.8rem;
+        text-align: center;
+        line-height: 1;
+        padding: 9px 4px;
+        border-radius: 50%;
+        transition: 0.4s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+      }
+
+      &::before {
+        content: "YES";
+        left: 4px;
+        color: #fff;
+        z-index: 2;
+      }
+
+      &::after {
+        content: "NO";
+        right: -24px;
+        color: #fff;
+        z-index: 2;
+      }
+
+      span {
+        left: 4px;
+        background-color: #03a9f4;
+        z-index: 1;
+      }
+    }
+
+    &-layer {
+      border-radius: 100px;
+      width: 100%;
+      background-color: #ebf7fc;
+      transition: 0.3s ease all;
+      z-index: 1;
+    }
+
+    &-checkbox {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 3;
+
+      &:checked + .nav__switch-knobs:before {
+        left: -24px;
+      }
+
+      &:checked + .nav__switch-knobs:after {
+        right: 4px;
+      }
+
+      &:checked + .nav__switch-knobs span {
+        left: 42px;
+        background-color: #f44336;
+      }
+
+      &:checked ~ .nav__switch-layer {
+        background-color: #fcebeb;
+      }
+    }
+  }
 }

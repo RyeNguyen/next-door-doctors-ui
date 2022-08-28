@@ -6,6 +6,7 @@ import BgVid from "../../assets/videos/hero-video-1.mp4";
 import Button from "../../components/Button/Button";
 
 import IconSearch from '../../assets/icons/icon-search--blue.svg';
+import Categories from "../../data/CategoriesData";
 import Navbar from "../Navbar/Navbar";
 
 class Homepage extends Component {
@@ -14,7 +15,7 @@ class Homepage extends Component {
             <div className='home'>
                 <Navbar/>
 
-                <div className="home__hero">
+                <section className="home__hero">
                     <video autoPlay muted loop className='home__hero-bg'>
                         <source src={BgVid} type="video/mp4"/>
                     </video>
@@ -35,7 +36,21 @@ class Homepage extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
+
+                <section className="home__categories">
+                    {
+                        Categories.map(category => (
+                            <div className='home__categories-card' key={category.categoryId}>
+                                <img className='home__categories-card-icon' src={category.categoryIcon} alt="category-icon"/>
+                                <h2 className='home__categories-card-title'>{category.categoryName}</h2>
+                                <div className='home__categories-card-btn'>
+                                    <Button text='Xem chi tiết' isLarger/>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </section>
             </div>
         );
     }

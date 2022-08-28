@@ -10,7 +10,8 @@
   padding: 1.2rem 3.2rem;
   background: linear-gradient(94.93deg, rgba(125, 225, 219, 0.17) 10.16%, rgba(128, 102, 201, 0.13) 90.68%);
   box-shadow: 0 10px 24px -4px rgba(101, 126, 212, 0.5);
-  backdrop-filter: blur(5rem);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
   border-radius: 2.4rem;
   display: flex;
   align-items: center;
@@ -19,6 +20,8 @@
   overflow: hidden;
   position: relative;
   z-index: 2;
+  outline: none;
+  border: none;
 
   &::before {
     content: '';
@@ -43,7 +46,7 @@
     height: auto;
     position: relative;
     display: inline-block;
-    background: linear-gradient(170deg, rgba(187,239,242,1) 0%, rgba(208,175,242,1) 100%);
+    background: linear-gradient(170deg, rgba(187, 239, 242, 1) 0%, rgba(208, 175, 242, 1) 100%);
     border-radius: 2.4rem;
     padding: 1px;
     z-index: 2;

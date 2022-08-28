@@ -30,7 +30,13 @@ const Navbar = () => {
                 </div>
             </div>
 
-            <div/>
+            <div className="nav__switch">
+                <input type="checkbox" className="nav__switch-checkbox"/>
+                <div className="nav__switch-knobs">
+                    <span/>
+                </div>
+                <div className="nav__switch-layer"/>
+            </div>
         </div>
     )
 }

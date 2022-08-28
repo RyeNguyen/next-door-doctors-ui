@@ -121,4 +121,79 @@
       }
     }
   }
+
+  &__categories {
+    width: 100%;
+    height: auto;
+    padding: 13.5rem 6.4rem 9.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 6.4rem;
+
+    &-card {
+      width: 32%;
+      height: auto;
+      padding: 3.2rem 2.4rem 9.2rem;
+      border-radius: 3.2rem;
+      box-shadow: 0 10px 24px -8px rgba(5, 16, 52, 0.5);
+      //background: linear-gradient(138.69deg, #051034 29.85%, #657ED4 45.42%, #A685ED 55.71%, #5227AD 72.99%);
+      background: radial-gradient(91.5% 163.12% at 2.69% 5.87%, #051034 14.65%, #657ED4 39.34%, #9C75EE 59.12%, #351873 74.09%, #657ED4 83.63%, #051034 95.38%);
+      background-size: 400% 400%;
+      text-align: center;
+      color: $color-white !important;
+      position: relative;
+      transition: all 0.5s ease-in-out;
+
+      h2 {
+        color: $color-white !important;
+        transition: all 0.2s ease-in-out;
+      }
+
+      &-icon {
+        margin-bottom: 1.6rem;
+      }
+
+      &-btn {
+        position: absolute;
+        bottom: -10%;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: all 0.2s ease-in;
+      }
+
+      &:hover {
+        transform: translateY(-1.6rem);
+        animation: gradient 12s ease infinite;
+
+        h2 {
+          transform: scale(1.02);
+          letter-spacing: 2px;
+        }
+
+        .home__categories-card-btn {
+          transform: translate(-50%, 8px);
+        }
+      }
+    }
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0 0;
+  }
+  25% {
+    background-position: 20% 70%;
+  }
+  50% {
+    background-position: 90% 90%;
+  }
+  75% {
+    background-position: 60% 10%;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }

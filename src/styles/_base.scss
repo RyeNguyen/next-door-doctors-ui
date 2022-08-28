@@ -3,18 +3,21 @@
  */
 
 html {
- /* default font-size is 16px, 62.5% of 16 is 10px */
- font-size: 62.5%;
- scroll-behavior: smooth;
+  /* default font-size is 16px, 62.5% of 16 is 10px */
+  font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 
- body {
-    background-color: #FFF;
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-family: $fontmain;
-    color: $color-primary;
-    font-size: 1.8rem;
+body {
+  font-family: $fontmain;
+  color: $color-primary;
+  font-size: 1.8rem;
+  background: linear-gradient(105.03deg, #CDF4F7 13.37%, rgba(209, 201, 241, 0.54) 83.17%), url(../assets/images/main-bg.svg);
+  backdrop-filter: blur(5rem);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-x: hidden;
 }
 
 h1, h2 {
