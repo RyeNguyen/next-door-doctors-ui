@@ -1,13 +1,30 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import './Navbar.scss';
 
 import Logo from '../../assets/images/logo--light.svg';
 
 const Navbar = () => {
+    const [activeNav, setActiveNav] = useState(false);
+
+    useEffect(() => {
+        changeNavBackground()
+        // adding the event when scroll change background
+        window.addEventListener("scroll", changeNavBackground)
+    });
+
+    const changeNavBackground = () => {
+        if (window.scrollY >= 132) {
+            setActiveNav(true);
+        } else {
+            setActiveNav(false);
+        }
+    }
+
     return (
-        <div className='nav'>
+        <div className={activeNav ? 'nav nav--active' : 'nav'}>
             <img src={Logo} alt="logo"/>
+
             <div className="nav__links">
                 <div className="nav__link">
                     Chuyên khoa
@@ -30,12 +47,15 @@ const Navbar = () => {
                 </div>
             </div>
 
-            <div className="nav__switch">
-                <input type="checkbox" className="nav__switch-checkbox"/>
-                <div className="nav__switch-knobs">
-                    <span/>
+            <div style={{display: 'flex', alignItems: 'center', gap: '1.6rem'}}>
+                <div className='nav__switch-label'>Language</div>
+                <div className="nav__switch">
+                    <input type="checkbox" className="nav__switch-checkbox"/>
+                    <div className="nav__switch-knobs">
+                        <span/>
+                    </div>
+                    <div className="nav__switch-layer"/>
                 </div>
-                <div className="nav__switch-layer"/>
             </div>
         </div>
     )

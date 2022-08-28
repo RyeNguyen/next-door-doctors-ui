@@ -9,8 +9,22 @@
   padding: 2.4rem 6.4rem;
   display: flex;
   align-items: center;
-  gap: 9.6rem;
+  justify-content: space-between;
+  //gap: 9.6rem;
   z-index: 6;
+  transition: all 0.5s ease-in-out;
+
+  &--active {
+    background: linear-gradient(107.37deg, rgba(185, 251, 255, 0.4) 3.3%, rgba(209, 201, 241, 0.28) 74.31%);
+    background-blend-mode: overlay, normal;
+    box-shadow: 0 1px 24px -8px rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(3rem);
+    padding: 8px 6.4rem;
+
+    //.nav__link {
+    //  color: $color-primary !important;
+    //}
+  }
 
   &__links {
     display: flex;
@@ -23,6 +37,7 @@
     cursor: pointer;
     padding: 1.6rem 2.4rem;
     border-radius: 2.4rem;
+    font-weight: 500;
     transition: all 0.5s ease-out;
 
     &-desc {
@@ -41,8 +56,12 @@
   &__switch {
     position: relative;
     width: 9.6rem;
-    height: 3.2rem;
+    height: 4.2rem;
     overflow: hidden;
+
+    &-label {
+      font-weight: bold;
+    }
 
     &-knobs,
     &-layer {
@@ -61,32 +80,35 @@
       &::after,
       span {
         position: absolute;
-        width: 2.8rem;
-        height: 2.8rem;
-        text-align: center;
-        line-height: 1;
-        padding: 9px 4px;
+        top: 3px;
+        width: 3.6rem;
+        height: 3.6rem;
         border-radius: 50%;
         transition: 0.4s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
       }
 
-      &::before {
-        content: "YES";
-        left: 4px;
-        color: #fff;
+      &::before,
+      &::after {
+        color: $color-white;
         z-index: 2;
       }
 
+      &::before {
+        content: "VI";
+        left: 12px;
+        top: 8px;
+      }
+
       &::after {
-        content: "NO";
-        right: -24px;
-        color: #fff;
-        z-index: 2;
+        content: "EN";
+        right: -4.8rem;
+        top: 8px;
       }
 
       span {
         left: 4px;
-        background-color: #03a9f4;
+        //background-color: #03a9f4;
+        background-color: #842d17;
         z-index: 1;
       }
     }
@@ -94,9 +116,11 @@
     &-layer {
       border-radius: 100px;
       width: 100%;
-      background-color: #ebf7fc;
+      //background-color: #ebf7fc;
+      background-color: #eca898;
       transition: 0.3s ease all;
       z-index: 1;
+      border: 2px solid $color-primary;
     }
 
     &-checkbox {
@@ -110,20 +134,23 @@
       z-index: 3;
 
       &:checked + .nav__switch-knobs:before {
-        left: -24px;
+        left: -4.8rem;
       }
 
       &:checked + .nav__switch-knobs:after {
-        right: 4px;
+        right: -2px;
       }
 
       &:checked + .nav__switch-knobs span {
-        left: 42px;
-        background-color: #f44336;
+        left: 5.7rem;
+        //right: 4px;
+        //background-color: #f44336;
+        background-color: $color-primary;
       }
 
       &:checked ~ .nav__switch-layer {
-        background-color: #fcebeb;
+        //background-color: #fcebeb;
+        background-color: #859ae2;
       }
     }
   }
