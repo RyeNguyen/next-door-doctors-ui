@@ -2,11 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {FormattedMessage} from "react-intl";
 
+import {changeLanguage} from "../../store/actions";
+
 import './Navbar.scss';
+import {LANGUAGE} from "../../utils";
 
 import Logo from '../../assets/images/logo--light.svg';
 
-const Navbar = () => {
+const Navbar = (props) => {
     const [activeNav, setActiveNav] = useState(false);
 
     useEffect(() => {
@@ -21,6 +24,11 @@ const Navbar = () => {
         } else {
             setActiveNav(false);
         }
+    }
+
+    const handleChangeLanguage = event => {
+        //Fire redux event : actions
+        props.changeLanguageFromRedux(event.target.checked ? LANGUAGE.EN : LANGUAGE.VI);
     }
 
     return (
@@ -52,7 +60,7 @@ const Navbar = () => {
             <div style={{display: 'flex', alignItems: 'center', gap: '1.6rem'}}>
                 <div className='nav__switch-label'><FormattedMessage id='navbar.language'/></div>
                 <div className="nav__switch">
-                    <input type="checkbox" className="nav__switch-checkbox"/>
+                    <input type="checkbox" className="nav__switch-checkbox" onClick={event => handleChangeLanguage(event)}/>
                     <div className="nav__switch-knobs">
                         <span/>
                     </div>
@@ -71,7 +79,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-    return {};
+    return {
+        changeLanguageFromRedux: language => dispatch(changeLanguage(language))
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
