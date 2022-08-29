@@ -1,4 +1,37 @@
 {
+    "navbar": {
+        "specialty": "Medical specialty",
+        "specialty-desc": "Find a doctor by specialty",
+        "facility": "Health facilities",
+        "facility-desc": "Choose hospital clinic",
+        "doctor": "Doctors",
+        "doctor-desc": "Choose a good doctor",
+        "pack": "Medical packs",
+        "pack-desc": "General health check",
+        "language": "Language"
+    },
+
+    "hero": {
+        "title-1": "Medical basis",
+        "title-2": "W/ comprehensive health care",
+        "subtitle": "A team of long-term doctors with diverse specialties from leading medical facilities in Vietnam",
+        "search": "Search",
+        "placeholder": "Search for doctors"
+    },
+
+    "categories": {
+        "more": "More details",
+        "specialized": "Specialized medical examination",
+        "remote": "Remote medical examination",
+        "general": "General medical examination",
+        "test": "Medial tests",
+        "mental": "Mental health",
+        "dental": "Dental medical examination",
+        "surgery": "Surgery packs",
+        "product": "Medical products",
+        "enterprise": "Enterprise's health"
+    },
+
     "common": {
         "add": "Add",
         "edit": "Edit",

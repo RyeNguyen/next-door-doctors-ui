@@ -1,4 +1,37 @@
 {
+    "navbar": {
+        "specialty": "Chuyên khoa",
+        "specialty-desc": "Tìm bác sĩ theo chuyên khoa",
+        "facility": "Cơ sở y tế",
+        "facility-desc": "Chọn bệnh viện phòng khám",
+        "doctor": "Bác sĩ",
+        "doctor-desc": "Chọn bác sĩ giỏi",
+        "pack": "Gói khám",
+        "pack-desc": "Khám sức khỏe tổng quát",
+        "language": "Ngôn ngữ"
+    },
+
+    "hero": {
+        "title-1": "Nền tảng y tế",
+        "title-2": "Chăm sóc sức khỏe toàn diện",
+        "subtitle": "Đội ngũ các bác sĩ lâu năm với đa dạng chuyên khoa từ các cơ sở y tế hàng đầu Việt Nam",
+        "search": "Tìm kiếm",
+        "placeholder": "Tìm kiếm bác sĩ"
+    },
+
+    "categories": {
+        "more": "Xem chi tiết",
+        "specialized": "Khám chuyên khoa",
+        "remote": "Khám từ xa",
+        "general": "Khám tổng quát",
+        "test": "Xét nghiệm y học",
+        "mental": "Sức khỏe tinh thần",
+        "dental": "Khám nha khoa",
+        "surgery": "Gói phẫu thuật",
+        "product": "Sản phẩm y tế",
+        "enterprise": "Sức khỏe doanh nghiệp"
+    },
+
     "common": {
         "add": "Thêm",
         "edit": "Sửa",

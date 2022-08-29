@@ -1,3 +1,5 @@
+import {FormattedMessage} from "react-intl";
+
 import IconInsight from '../assets/icons/icon-insight--light.svg';
 import IconRemote from '../assets/icons/icon-remote--light.svg';
 import IconShield from '../assets/icons/icon-shield--light.svg';
@@ -11,7 +13,8 @@ import IconGroup from '../assets/icons/icon-group--light.svg';
 const Categories = [
     {
         categoryId: 1,
-        categoryName: 'Khám chuyên khoa',
+        categoryNamevi: 'Khám chuyên khoa',
+        categoryNameen: 'Specialized examination',
         categoryIcon: IconInsight,
         subCategories: [
             {
@@ -43,7 +46,8 @@ const Categories = [
     },
     {
         categoryId: 2,
-        categoryName: 'Khám từ xa',
+        categoryNamevi: 'Khám từ xa',
+        categoryNameen: 'Remote examination',
         categoryIcon: IconRemote,
         subCategories: [
             {
@@ -75,7 +79,8 @@ const Categories = [
     },
     {
         categoryId: 3,
-        categoryName: 'Khám tổng quát',
+        categoryNamevi: 'Khám tổng quát',
+        categoryNameen: 'General examination',
         categoryIcon: IconShield,
         subCategories: [
             {
@@ -107,7 +112,8 @@ const Categories = [
     },
     {
         categoryId: 4,
-        categoryName: 'Xét nghiệm y học',
+        categoryNamevi: 'Xét nghiệm y học',
+        categoryNameen: 'Medial tests',
         categoryIcon: IconResearch,
         subCategories: [
             {
@@ -139,7 +145,8 @@ const Categories = [
     },
     {
         categoryId: 5,
-        categoryName: 'Sức khỏe tinh thần',
+        categoryNamevi: 'Sức khỏe tinh thần',
+        categoryNameen: 'Mental health',
         categoryIcon: IconBrain,
         subCategories: [
             {
@@ -171,7 +178,8 @@ const Categories = [
     },
     {
         categoryId: 6,
-        categoryName: 'Khám nha khoa',
+        categoryNamevi: 'Khám nha khoa',
+        categoryNameen: 'Dental examination',
         categoryIcon: IconDental,
         subCategories: [
             {
@@ -203,7 +211,8 @@ const Categories = [
     },
     {
         categoryId: 7,
-        categoryName: 'Gói phẫu thuật',
+        categoryNamevi: 'Gói phẫu thuật',
+        categoryNameen: 'Surgery packs',
         categoryIcon: IconSurgery,
         subCategories: [
             {
@@ -235,7 +244,8 @@ const Categories = [
     },
     {
         categoryId: 8,
-        categoryName: 'Sản phẩm y tế',
+        categoryNamevi: 'Sản phẩm y tế',
+        categoryNameen: 'Medical products',
         categoryIcon: IconCar,
         subCategories: [
             {
@@ -267,7 +277,8 @@ const Categories = [
     },
     {
         categoryId: 9,
-        categoryName: 'Sức khỏe doanh nghiệp',
+        categoryNamevi: 'Sức khỏe doanh nghiệp',
+        categoryNameen: 'Enterprise\'s health',
         categoryIcon: IconGroup,
         subCategories: [
             {

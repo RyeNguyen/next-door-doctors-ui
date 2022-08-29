@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import {connect} from 'react-redux';
+import {FormattedMessage} from "react-intl";
 
 import './Navbar.scss';
 
@@ -27,28 +29,28 @@ const Navbar = () => {
 
             <div className="nav__links">
                 <div className="nav__link">
-                    Chuyên khoa
-                    <div className="nav__link-desc">Tìm bác sĩ theo chuyên khoa</div>
+                    <FormattedMessage id='navbar.specialty'/>
+                    <div className="nav__link-desc"><FormattedMessage id='navbar.specialty-desc'/></div>
                 </div>
 
                 <div className="nav__link">
-                    Cơ sở y tế
-                    <div className="nav__link-desc">Chọn bệnh viện phòng khám</div>
+                    <FormattedMessage id='navbar.facility'/>
+                    <div className="nav__link-desc"><FormattedMessage id='navbar.facility-desc'/></div>
                 </div>
 
                 <div className="nav__link">
-                    Bác sĩ
-                    <div className="nav__link-desc">Chọn bác sĩ giỏi</div>
+                    <FormattedMessage id='navbar.doctor'/>
+                    <div className="nav__link-desc"><FormattedMessage id='navbar.doctor-desc'/></div>
                 </div>
 
                 <div className="nav__link">
-                    Gói khám
-                    <div className="nav__link-desc">Khám sức khỏe tổng quát</div>
+                    <FormattedMessage id='navbar.pack'/>
+                    <div className="nav__link-desc"><FormattedMessage id='navbar.pack-desc'/></div>
                 </div>
             </div>
 
             <div style={{display: 'flex', alignItems: 'center', gap: '1.6rem'}}>
-                <div className='nav__switch-label'>Language</div>
+                <div className='nav__switch-label'><FormattedMessage id='navbar.language'/></div>
                 <div className="nav__switch">
                     <input type="checkbox" className="nav__switch-checkbox"/>
                     <div className="nav__switch-knobs">
@@ -61,4 +63,15 @@ const Navbar = () => {
     )
 }
 
-export default Navbar;
+const mapStateToProps = state => {
+    return {
+        isLoggedIn: state.user.isLoggedIn,
+        lang: state.app.language
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
